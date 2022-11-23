@@ -50,8 +50,8 @@ class FdcGenerator(Resource):
             # confirm we got the right number of tables
             input_tables = json.loads(args['tables']);
             dict_keys = input_tables.keys()
-            if (not str(cls.input_table_count) in dict_keys or len(dict_keys) != cls.input_table_count):
-                raise Exception("Expected tables to have key '1', found: " + ",".join(dict_keys))
+            if (len(dict_keys) != cls.input_table_count):
+                raise Exception("Wrong number of tables sent to FDC generator.  Expected: " + cls.input_table_count + " found: " + len(dict_keys))
             
             semtk_tables = {}
             for seq_num in input_tables.keys():
